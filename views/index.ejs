@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý web</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <style>
+    .custom-color {
+      background-color: #004d4c !important;
+    }
+
+    .list-group-item:hover {
+      background-color: #004d4c !important;
+    }
+
+    .line-through {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark custom-color">
+    <a class="navbar-brand" href="#">Picsum Photo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Vertical Tabs -->
+      <div class="col-md-3 col-12">
+        <div class="list-group" id="v-pills-tab" role="tablist">
+          <h3>Thêm</h3>
+        
+          <a class="list-group-item list-group-item-action active" id="v-pills-add-tab" data-toggle="pill"
+            href="#v-pills-add" role="tab">Thêm sản phẩm</a>
+          <a class="list-group-item list-group-item-action" id="v-pills-account-tab" data-toggle="pill"
+            href="#v-pills-account" role="tab">Nhập Tài Khoản</a>
+          <h3>Quản lý</h3>
+      
+          <a class="list-group-item list-group-item-action" id="v-pills-products-tab" data-toggle="pill"
+            href="#v-pills-products" role="tab">Quản lý sản phẩm</a>
+          <a class="list-group-item list-group-item-action" id="v-pills-users-tab" data-toggle="pill"
+            href="#v-pills-users" role="tab">Quản lý người dùng</a>
+        </div>
+      </div>
+
+      <!-- Tabs Content -->
+      <div class="col-md-9 col-12">
+        <div class="tab-content" id="v-pills-tabContent">
+          <!-- Thêm sản phẩm tab -->
+          <div class="tab-pane fade show active" id="v-pills-add" role="tabpanel">
+            <h2>Thêm sản phẩm</h2>
+            <form action="/addProduct" method="post" enctype="multipart/form-data">
+              <!-- Dropdown select for "Loại giày" -->
+              <div class="form-group">
+                <label for="productCart">Loại giày</label>
+                <select class="form-control" id="productCart" name="productCart" required>
+                   <option value="GiayTheThao">Giày thể thao</option>
+                  <option value="GiaySneaker">Giày sneaker</option>
+                  <option value="GiayLuoi">Giày lười</option>
+                  <option value="GiayCaoGot">Giày cao gót</option>
+                  <option value="GiayBoot">Giày boot</option>
+                  <option value="GiayCoDien">Giày cổ điển</option>
+              
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+
+              <!-- Input for "Tên sản phẩm" -->
+              <div class="form-group">
+                <label for="productName">Tên sản phẩm</label>
+                <input type="text" class="form-control" id="productName" name="productName"
+                  placeholder="Nhập tên sản phẩm" required>
+              </div>
+
+              <!-- Dropdown select for "Tên hãng" -->
+              <div class="form-group">
+                <label for="productBrand">Tên hãng</label>
+                <select class="form-control" id="productBrand" name="productBrand" required>
+                  <option value="Converse">Converse</option>
+                  <option value="Nike">Nike</option>
+                  <option value="Adidas">Adidas</option>
+                  <option value="Puma">Puma</option>
+                  <option value="Chanel ">Chanel </option>
+                  <option value="Gucci">Gucci</option>
+                  <option value="LouisVuitton ">Louis Vuitton </option>
+              
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+
+              <!-- Input for "Giá mới" -->
+              <div class="form-group">
+                <label for="productPriceNew">Giá mới</label>
+                <input type="number" class="form-control" id="productPriceNew" name="productPriceNew"
+                  placeholder="Nhập giá mới" required>
+              </div>
+
+              <!-- Input for "Giá cũ" -->
+              <div class="form-group">
+                <label for="productPriceOld">Giá cũ</label>
+                <input type="number" class="form-control" id="productPriceOld" name="productPriceOld"
+                  placeholder="Nhập giá cũ" required>
+              </div>
+
+              <!-- Input for "Số lượng" -->
+              <div class="form-group">
+                <label for="productNumber">Số lượng</label>
+                <input type="number" class="form-control" id="productNumber" name="productNumber"
+                  placeholder="Nhập số lượng" required>
+              </div>
+
+              <!-- Textarea for "Mô tả sản phẩm" -->
+              <div class="form-group">
+                <label for="productDescription">Mô tả sản phẩm</label>
+                <textarea class="form-control" id="productDescription" name="productDescription" rows="3"
+                  required></textarea>
+              </div>
+
+              <!-- Checkboxes for "Size giày" -->
+              <div class="form-group">
+                <label for="productSizes">Size giày</label><br>
+                <input type="checkbox" id="size36" name="productSizes" value="36">
+                <label for="size36">36</label>
+                <input type="checkbox" id="size37" name="productSizes" value="37">
+                <label for="size37">37</label>
+                <input type="checkbox" id="size38" name="productSizes" value="38">
+                <label for="size38">38</label>
+                <input type="checkbox" id="size39" name="productSizes" value="39">
+                <label for="size39">39</label>
+                <input type="checkbox" id="size40" name="productSizes" value="40">
+                <label for="size40">40</label>
+                <input type="checkbox" id="size41" name="productSizes" value="41">
+                <label for="size41">41</label>
+                <input type="checkbox" id="size42" name="productSizes" value="42">
+                <label for="size42">42</label>
+                <!-- Add more checkboxes for other sizes as needed -->
+              </div>
+
+              <!-- Input for "Hình ảnh sản phẩm" -->
+              <div class="form-group">
+                <label for="productImage">Hình ảnh sản phẩm</label>
+                <input type="file" name="avatar" id="productImage" accept=".jpg, .jpeg, .png" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+            </form>
+          </div>
+
+        
+
+        
+
+          <!-- Nhập Tài Khoản tab -->
+          <div class="tab-pane fade" id="v-pills-account" role="tabpanel">
+            <h2>Nhập Tài Khoản</h2>
+            <form action="/addAccount" method="post">
+              <div class="form-group">
+                <label for="username">Tên đăng nhập</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên đăng nhập"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="birthYear">Năm sinh</label>
+                <input type="number" class="form-control" id="birthYear" name="birthYear" placeholder="Nhập năm sinh"
+                  required>
+              </div>
+              <div class="form-group">
+                <label>Giới tính</label>
+                <div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Male" required>
+                    <label class="form-check-label" for="genderMale">Nam</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Female"
+                      required>
+                    <label class="form-check-label" for="genderFemale">Nữ</label>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Thêm tài khoản</button>
+            </form>
+          </div>
+
+
+          <!-- Quản lý sản phẩm tab -->
+          <div class="tab-pane fade" id="v-pills-products" role="tabpanel">
+            <h2>Quản lý sản phẩm</h2>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Tên giày</th>
+                  <th>Thể loại</th>
+                  <th>Nhãn hàng</th>
+                  <th>Ảnh</th>
+                  <th>Giá mới</th>
+                  <th>Giá cũ</th>
+                  <th>Mô tả</th>
+                  <th>Số lượng</th>
+                  <th>Kích cỡ</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%function formatCurrency(value) { return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "," ); } %>
+
+                  <% let index=1; %>
+                    <% data.forEach((item)=> { %>
+                      <tr>
+                        <td>
+                          <%= index %>
+                        </td>
+                        <td class="font-weight-bold">
+                          <%= item.name %>
+                        </td>
+                        <td>
+                          <%= item.cart %>
+                        </td>
+                        <td>
+                          <%= item.brand %>
+                        </td>
+                        <td><img width="120px" height="80px" src="<%=item.avartarFile%>" alt="<%= item.author %>">
+                        </td>
+                        <td class="text-danger">
+                          <%= formatCurrency(item.priceNew) %> VND
+                        </td>
+                        <td class="font-weight-light line-through">
+                          <%= formatCurrency(item.priceOld) %> VND
+                        </td>
+                        <td>
+                          <%= item.description %>
+                        </td>
+
+                        <td>
+                          <%= formatCurrency(item.number) %>
+                        </td>
+                        <td>
+                          <% var nSize=item.productSizes %>
+                            <% nSize.forEach((Size)=> { %>
+                              <%= Size %>
+                                <% });%>
+                        </td>
+                        <!-- Chú ý: Bạn cũng có thể muốn thay thế số cứng này bằng số lượng thực sự của sản phẩm -->
+                        <td>
+                          <button class="btn btn-primary">Sửa</button>
+
+                          <button type="submit" class="update-delete"><a href="/delete?id=<%= item._id %>"
+                              class="update-delete">Xóa</a>
+                          </button>
+
+                        </td>
+                      </tr>
+                      <% index++; %>
+                        <% }) %>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Quản lý người dùng tab -->
+          <div class="tab-pane fade" id="v-pills-users" role="tabpanel">
+            <h2>Quản lý người dùng</h2>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Họ tên</th>
+                  <th>Mật khẩu</th>
+                  <th>Trạng thái</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function formatCurrency(value) {
+      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
